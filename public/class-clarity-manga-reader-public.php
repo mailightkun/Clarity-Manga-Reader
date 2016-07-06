@@ -103,19 +103,32 @@ class Clarity_Manga_Reader_Public {
 
 	public function cmr_chaptersListShortcode($attributes){
 		global $post;
-		$manage = new manage();
-		$object = $manage->getMangaObject( $post->ID );
+		global $wpdb;
+		
 		$atts = shortcode_atts( array(
 			'before' => '<div class="chapters-container">',
 			'after'  => '</div>',
 			'title'  => 'Chapters',
+			'order'  => 'asc',
 		), $attributes );
+		
+		if($atts['order'] != 'ASC' && $atts['order'] != 'DESC' && $atts['order'] != 'asc' && $atts['order'] != 'desc'){
+		  exit();
+		}
+		
+	  	$object = Manage::constructQuery('
+			SELECT * FROM ' . $wpdb->prefix . 'posts
+            INNER JOIN ' . $wpdb->prefix . 'cmr_chapters
+            ON manga_id=' . $wpdb->prefix . 'posts.id
+            WHERE ' . $wpdb->prefix . 'posts.id=%d
+            ORDER BY chapter_volume '.$atts['order'].', chapter_number '.$atts['order'].'
+		', $post->ID, OBJECT);
+		
 		if ($object) {
+			$contents = $atts['before'] . '<h2>' . $atts['title'] . '</h2>';
 			$previous_volume = '';
-			$contents = '<h2>' . $atts['title'] . '</h2>' . $atts['before'];
-
 			foreach ( $object as $o ) {
-				$has_images = $manage->getChapterImages( $o->id );
+				$has_images = Manage::constructQuery('SELECT * FROM ' . $wpdb->prefix . 'cmr_images WHERE chapter_id=%d', $o->id, OBJECT);
 				if ( $has_images[0]->id ) {
 					$current_volume = $o->chapter_volume;
 					$reader = get_option('cmr_reader_page');
