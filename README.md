@@ -31,6 +31,6 @@ recommended is to add it in your theme's php file `<?php echo do_shortcode('[cmr
 ###[cmr_chapters_list] attributes
 * **before** - string to appear before the list (default `<div class="chapters-container">`);
 * **after** - string to appear after the list (default `</div>`);
-* **title** - a title for the chapters list (default `Chapters`);
+* **title** - a title for the chapters list (default `<h2>Chapters</h2>`);
 * **order** - how to order chapters and volumes, ascending or descending (accepted values ASC, asc, DESC, desc, default `DESC`);
 
