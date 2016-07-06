@@ -27,3 +27,10 @@ Currently there are two shortcodes:
 by default the list is added after the manga content (what you add in the editor when creating the manga), 
 but you can disable this behavior and add the shortcode directly in the editor, 
 recommended is to add it in your theme's php file `<?php echo do_shortcode('[cmr_chapters_list]'); ?>` or leave it as it is.
+
+###[cmr_chapters_list] attributes
+* **before** - string to appear before the list (default `<div class="chapters-container">`);
+* **after** - string to appear after the list (default `</div>`);
+* **title** - a title for the chapters list (default `Chapters`);
+* **order** - how to order chapters and volumes, ascending or descending (accepted values ASC, asc, DESC, desc, default `DESC`);
+
