@@ -109,19 +109,19 @@ class Clarity_Manga_Reader_Public {
 			'before' => '<div class="chapters-container">',
 			'after'  => '</div>',
 			'title'  => '<h2>Chapters</h2>',
-			'order'  => 'asc',
+			'order'  => 'DESC',
 		), $attributes );
 		
 		if($atts['order'] != 'ASC' && $atts['order'] != 'DESC' && $atts['order'] != 'asc' && $atts['order'] != 'desc'){
-		  exit();
+			exit();
 		}
 		
 	  	$object = Manage::constructQuery('
 			SELECT * FROM ' . $wpdb->prefix . 'posts
-            INNER JOIN ' . $wpdb->prefix . 'cmr_chapters
-            ON manga_id=' . $wpdb->prefix . 'posts.id
-            WHERE ' . $wpdb->prefix . 'posts.id=%d
-            ORDER BY chapter_volume '.$atts['order'].', chapter_number '.$atts['order'].'
+			INNER JOIN ' . $wpdb->prefix . 'cmr_chapters
+			ON manga_id=' . $wpdb->prefix . 'posts.id
+			WHERE ' . $wpdb->prefix . 'posts.id=%d
+			ORDER BY chapter_volume '.$atts['order'].', chapter_number '.$atts['order'].'
 		', $post->ID, OBJECT);
 		
 		if ($object) {
