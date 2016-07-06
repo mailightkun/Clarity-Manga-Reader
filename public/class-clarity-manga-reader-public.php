@@ -108,7 +108,7 @@ class Clarity_Manga_Reader_Public {
 		$atts = shortcode_atts( array(
 			'before' => '<div class="chapters-container">',
 			'after'  => '</div>',
-			'title'  => 'Chapters',
+			'title'  => '<h2>Chapters</h2>',
 			'order'  => 'asc',
 		), $attributes );
 		
@@ -125,7 +125,7 @@ class Clarity_Manga_Reader_Public {
 		', $post->ID, OBJECT);
 		
 		if ($object) {
-			$contents = $atts['before'] . '<h2>' . $atts['title'] . '</h2>';
+			$contents = $atts['before'] . $atts['title'];
 			$previous_volume = '';
 			foreach ( $object as $o ) {
 				$has_images = Manage::constructQuery('SELECT * FROM ' . $wpdb->prefix . 'cmr_images WHERE chapter_id=%d', $o->id, OBJECT);
