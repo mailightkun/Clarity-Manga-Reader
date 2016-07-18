@@ -141,7 +141,7 @@ class Clarity_Manga_Reader_Public {
 					$contents .= '<a href="' . get_site_url() . '/';
 					$contents .= $reader . '/' . $o->post_name;
 					$contents .= '/chapter-' . $o->chapter_number;
-					$contents .= '/page-1">Chapter ';
+					$contents .= '/page-1/">Chapter ';
 					$contents .= $o->chapter_number . ': ' . stripslashes( $o->chapter_name );
 					$contents .= '</a></div>';
 					$previous_volume = $current_volume;
