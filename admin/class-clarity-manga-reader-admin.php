@@ -407,23 +407,23 @@ class Clarity_Manga_Reader_Admin {
 						</div>
 
 						<span class="add button button-secondary"  data-chid="<?php echo $chapter->id ?>" data-chnum="<?php echo $chapter->chapter_number ?>" title="Add Images" id="add-images-<?php echo $chapter->id ?>" >
-							<?php echo $addimages; ?><span class="dashicons dashicons-plus-alt"></span>
+							<span class="dashicons dashicons-plus-alt"></span><?php echo $addimages; ?>
 						</span>
 
 						<span class="up button button-secondary"   data-chid="<?php echo $chapter->id ?>" title="Start Upload" id="start-upload-<?php echo $chapter->id ?>">
-							<?php echo $upimages; ?><span class="dashicons dashicons-upload"></span>
+							<span class="dashicons dashicons-upload"></span><?php echo $upimages; ?>
 						</span>
 
 						<span class="load button button-secondary" data-chid="<?php echo $chapter->id ?>" title="List Images">
-							<?php echo $listimages; ?><span class="dashicons dashicons-list-view"></span>
+							<span class="dashicons dashicons-list-view"></span><?php echo $listimages; ?>
 						</span>
 
 						<span class="edit button button-secondary" data-chid="<?php echo $chapter->id ?>" title="Edit Chapter <?php echo $chapter->chapter_number ?>">
-							<?php echo $editchapter; ?><span class="dashicons dashicons-edit"></span>
+							<span class="dashicons dashicons-edit"></span><?php echo $editchapter; ?>
 						</span>
 
 						<span class="del button button-secondary"  data-chid="<?php echo $chapter->id ?>" title="Delete Chapter <?php echo $chapter->chapter_number ?>">
-							<?php echo $deletechapter; ?><span class="dashicons dashicons-trash"></span>
+							<span class="dashicons dashicons-trash"></span><?php echo $deletechapter; ?>
 						</span>
 
 						<div id="edit-chapter-form-<?php echo $chapter->id ?>" class="edit-container">

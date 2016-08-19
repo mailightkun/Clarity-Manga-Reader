@@ -104,18 +104,18 @@ class Clarity_Manga_Reader_Public {
 	public function cmr_chaptersListShortcode($attributes){
 		global $post;
 		global $wpdb;
-		
+
 		$atts = shortcode_atts( array(
-			'before' => '<div class="chapters-container">',
-			'after'  => '</div>',
-			'title'  => '<h2>Chapters</h2>',
-			'order'  => 'DESC',
+			'before'      => '<div class="chapters-container">',
+			'after'       => '</div>',
+			'title'       => '<h2>Chapters</h2>',
+			'order'       => 'ASC',
 		), $attributes );
-		
+
 		if($atts['order'] != 'ASC' && $atts['order'] != 'DESC' && $atts['order'] != 'asc' && $atts['order'] != 'desc'){
 			exit();
 		}
-		
+
 	  	$object = Manage::constructQuery('
 			SELECT * FROM ' . $wpdb->prefix . 'posts
 			INNER JOIN ' . $wpdb->prefix . 'cmr_chapters
@@ -123,7 +123,7 @@ class Clarity_Manga_Reader_Public {
 			WHERE ' . $wpdb->prefix . 'posts.id=%d
 			ORDER BY chapter_volume '.$atts['order'].', chapter_number '.$atts['order'].'
 		', $post->ID, OBJECT);
-		
+
 		if ($object) {
 			$contents = $atts['before'] . $atts['title'];
 			$previous_volume = '';

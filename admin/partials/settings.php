@@ -205,8 +205,8 @@ add_settings_field(
    /* id */
    'cmr_delete_settings',
    /* title */
-   '<span class="cmr-delete-settings" title="' . __('Delete Files', 'clarity-manga-reader') . '">
-   <label for="cmr_delete_settings">' . __('Delete Files', 'clarity-manga-reader') . '</label>
+   '<span class="cmr-delete-settings" title="' . __('Delete Settings', 'clarity-manga-reader') . '">
+   <label for="cmr_delete_settings">' . __('Delete Settings', 'clarity-manga-reader') . '</label>
    </span>',
    /* callback */
    array($this, 'cmr_delete_settings'),
@@ -218,16 +218,16 @@ add_settings_field(
 
 /* cmr_s1 */
 register_setting( 'cmr_settings', 'cmr_enable_manga_post_type', array($this, 'cmr_checkbox_validation') );
-register_setting( 'cmr_settings', 'cmr_dir_name', 'sanitize_file_name' );
-register_setting( 'cmr_settings', 'cmr_max_up_size', 'sanitize_text_field' );
-register_setting( 'cmr_settings', 'cmr_allowed_extensions', 'sanitize_text_field' );
-register_setting( 'cmr_settings', 'cmr_per_page', 'sanitize_text_field' );
-register_setting( 'cmr_settings', 'cmr_show_text', array($this, 'cmr_checkbox_validation') );
+register_setting( 'cmr_settings', 'cmr_show_text',              array($this, 'cmr_checkbox_validation') );
+register_setting( 'cmr_settings', 'cmr_dir_name',               'sanitize_file_name' );
+register_setting( 'cmr_settings', 'cmr_max_up_size',            'sanitize_text_field' );
+register_setting( 'cmr_settings', 'cmr_allowed_extensions',     'sanitize_text_field' );
+register_setting( 'cmr_settings', 'cmr_per_page',               'sanitize_text_field' );
 /* cmr_s2 */
-register_setting( 'cmr_settings', 'cmr_reader_page', 'sanitize_text_field' );
-register_setting( 'cmr_settings', 'cmr_js_navigation', array($this, 'cmr_checkbox_validation') );
-register_setting( 'cmr_settings', 'cmr_display_chapters_list', array($this, 'cmr_checkbox_validation') );
+register_setting( 'cmr_settings', 'cmr_reader_page',            'sanitize_text_field' );
+register_setting( 'cmr_settings', 'cmr_js_navigation',          array($this, 'cmr_checkbox_validation') );
+register_setting( 'cmr_settings', 'cmr_display_chapters_list',  array($this, 'cmr_checkbox_validation') );
 /* cmr_s3 */
-register_setting( 'cmr_settings', 'cmr_delete_tables', array($this, 'cmr_checkbox_validation') );
-register_setting( 'cmr_settings', 'cmr_delete_files', array($this, 'cmr_checkbox_validation') );
-register_setting( 'cmr_settings', 'cmr_delete_settings', array($this, 'cmr_checkbox_validation') );
+register_setting( 'cmr_settings', 'cmr_delete_tables',          array($this, 'cmr_checkbox_validation') );
+register_setting( 'cmr_settings', 'cmr_delete_files',           array($this, 'cmr_checkbox_validation') );
+register_setting( 'cmr_settings', 'cmr_delete_settings',        array($this, 'cmr_checkbox_validation') );

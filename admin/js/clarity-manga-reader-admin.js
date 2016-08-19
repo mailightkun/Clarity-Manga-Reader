@@ -1,4 +1,3 @@
-console.log(clarity.manga_obj);
 function upload(i,j){
 	var ext = clarity.allowed_ext;
 	var up = new qq.FineUploaderBasic({
@@ -16,6 +15,7 @@ function upload(i,j){
 		//	allowedExtensions: ext,
 			sizeLimit: clarity.max_up_size*1000*1000,
 		},
+		fileInputTitle: 'Add Images',
 		debug:true,
 		autoUpload: false,
 		callbacks: {
@@ -132,11 +132,11 @@ window.onload = function () {
                 var chapters = '<div id="cmr-manage-' + chapter_id + '" class="cmr-chapters__manage"><h3>Chapter ' + chapter_number + ' Added</h3>';
                     chapters += '<div class="chapter">';
 	                    chapters += '<div class="chapter-text">Chapter Number: <strong>' + chapter_number + '</strong> | Chapter Name: <span class="ch-name ch-name-' + chapter_id + '">'+chapter_name+'</span></div>';
-	                    chapters += '<span class="add button button-secondary add-images" id="add-images-' + chapter_id + '">'+addimages+'<span class="dashicons dashicons-plus-alt"></span></span>';
-	                    chapters += '<span class="start button button-secondary" id="start-upload-' + chapter_id + '">'+upimages+'<span class="dashicons dashicons-upload"></span></span>';
-	                    chapters += '<span class="load button button-secondary" id="load-images-' + chapter_id + '" data-chid="'+chapter_id+'">'+listimages+'<span class="dashicons dashicons-list-view"></span></span>';
-	                    chapters += '<span class="edit button button-secondary" data-chid="' + chapter_id + '" title="Edit Chapter ' + chapter_number + '">'+editchapter+'<span class="dashicons dashicons-edit"></span></span>';
-	                    chapters += '<span class="del button button-secondary" data-chid="' + chapter_id + '" title="Delete chapter ' + chapter_number + '">'+deletechapter+'<span class="dashicons dashicons-trash"></span></span>';
+	                    chapters += '<span class="add button button-secondary add-images" id="add-images-' + chapter_id + '"><span class="dashicons dashicons-plus-alt"></span>'+addimages+'</span>';
+	                    chapters += '<span class="start button button-secondary" id="start-upload-' + chapter_id + '"><span class="dashicons dashicons-upload"></span>'+upimages+'</span>';
+	                    chapters += '<span class="load button button-secondary" id="load-images-' + chapter_id + '" data-chid="'+chapter_id+'"><span class="dashicons dashicons-list-view"></span>'+listimages+'</span>';
+	                    chapters += '<span class="edit button button-secondary" data-chid="' + chapter_id + '" title="Edit Chapter ' + chapter_number + '"><span class="dashicons dashicons-edit"></span>'+editchapter+'</span>';
+	                    chapters += '<span class="del button button-secondary" data-chid="' + chapter_id + '" title="Delete chapter ' + chapter_number + '"><span class="dashicons dashicons-trash"></span>'+deletechapter+'</span>';
 
 						chapters += '<div id="edit-chapter-form-'+chapter_id+'" class="edit-container">';
 							chapters += '<div id="chapter-form">';
@@ -167,9 +167,17 @@ window.onload = function () {
 
 	/* << Load Images */
     $('body').on('click', '.load', function () {
-		var chid      = $(this).data('chid');
-		var manga_id  = $('#the-post-id').val();
-		$(this).replaceWith('<span id="close-images-' + chid + '" class="button button-secondary" data-chid="' + chid + '"><span class="dashicons dashicons-no-alt"></span></span>');
+		var closeimages = '';
+		var listimages  = '';
+		if(clarity.btn_text){
+			var closeimages = '<span class="btn-text">Close Images</span>';
+			var listimages  = '<span class="btn-text">List Images</span>';
+		}
+		var chid        = $(this).data('chid');
+		var manga_id    = $('#the-post-id').val();
+		var closeImgBtn = '<span id="close-images-' + chid + '" class="button button-secondary" data-chid="' + chid + '" title="Close Images">';
+			closeImgBtn += '<span class="dashicons dashicons-no-alt"></span>' + closeimages + '</span>';
+		$(this).replaceWith(closeImgBtn);
 		$.ajax({
             method: 'post',
             dataType: 'json',
@@ -199,9 +207,11 @@ window.onload = function () {
             $('#filelist-' + chid).html('');
 
             $('#close-images-' + chid).click(function () {
+				var listImgBtn  = '<span class="load button button-secondary" id="load-images-' + chid + '"  data-chid="' + chid + '" title="List Images">';
+					listImgBtn += '<span class="dashicons dashicons-list-view"></span>'+listimages+'</span>';
                 $('#list-images-' + chid).html('');
                 $('#filelist-' + chid).html('');
-                $('#close-images-' + chid).replaceWith('<span class="load button button-secondary" id="load-images-' + chid + '"  data-chid="' + chid + '"><span class="dashicons dashicons-list-view"></span></span>');
+                $('#close-images-' + chid).replaceWith(listImgBtn);
             });
         });
     });
