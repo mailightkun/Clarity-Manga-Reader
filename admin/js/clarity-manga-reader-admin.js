@@ -294,7 +294,7 @@ window.onload = function () {
 				url: ajaxurl,
 				data: {
 					action: 'cmr_pagination',
-					manga_id: clarity.manga_id,
+					manga_id: clarity.manga_obj.ID,
 					page: page
 				}
 			}).done(function(data) {
